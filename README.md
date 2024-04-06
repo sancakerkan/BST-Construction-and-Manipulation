@@ -38,6 +38,7 @@ To use the binary search tree implementation, follow these steps:
 1. Create an instance of `BinarySearchTree`.
 2. Call the appropriate methods to construct, manipulate, or traverse the tree.
 
+```java
 
 import java.util.Scanner;
 
@@ -208,3 +209,4 @@ public class hw1 {
         scanner.close(); // Close the scanner
     }
 }
+```
