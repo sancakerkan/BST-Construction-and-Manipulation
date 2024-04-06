@@ -25,8 +25,7 @@ public class BinarySearchTree {
         } else if (value > node.value) {
             node.right = insertRecursive(node.right, value);
         }
-        return node;
-
+        return node; 
     }
 
     // Method to perform inorder traversal
@@ -65,16 +64,16 @@ public class BinarySearchTree {
     TreeNode deleteRecursive(TreeNode root, int key) {
         if (root == null) return root;
 
-        
         if (key < root.value) {
             root.left = deleteRecursive(root.left, key);
         } else if (key > root.value) {
             root.right = deleteRecursive(root.right, key);
         } else {
-            if (root.left == null)
+            if (root.left == null) {
                 return root.right;
-            else if (root.right == null)
+            } else if (root.right == null) {
                 return root.left;
+            }
 
             root.value = minValue(root.right);
 
