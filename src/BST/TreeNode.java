@@ -1,4 +1,4 @@
-package defaultpackage;
+package BST;
 
 class TreeNode {
     int value;

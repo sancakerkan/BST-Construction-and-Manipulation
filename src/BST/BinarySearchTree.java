@@ -1,4 +1,4 @@
-package defaultpackage;
+package BST;
 
 public class BinarySearchTree {
     TreeNode root;
@@ -90,6 +90,4 @@ public class BinarySearchTree {
             root = root.left;
         }
         return minv;
-    }
-    
-}
+    }}
