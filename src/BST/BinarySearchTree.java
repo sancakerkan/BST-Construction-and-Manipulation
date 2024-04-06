@@ -1,93 +1,111 @@
 package BST;
 
-public class BinarySearchTree {
-    TreeNode root;
+// Definition of a single node in a binary search tree
+class Node {
+    int value;
+    Node leftChild, rightChild;
 
+    // Constructor to initialize a node with a given value
+    public Node(int val) {
+        value = val;
+        leftChild = rightChild = null;
+    }
+}
+
+// Class representing a binary search tree
+public class BinarySearchTree {
+    Node rootNode;
+
+    // Constructor to initialize an empty binary search tree
     public BinarySearchTree() {
-        root = null;
+        rootNode = null;
     }
 
-    // Method to construct the BST 
-    public void construct(int[] values) {
-        for (int value : values) {
-            root = insertRecursive(root, value);
+    // Method to build the binary search tree from an array of integers
+    public void constructTree(int[] values) {
+        for (int val : values) {
+            rootNode = insertNode(rootNode, val);
         }
     }
 
-    // Method to insert a new value into the BST
-    public TreeNode insertRecursive(TreeNode node, int value) {
+    // Method to insert a new value into the binary search tree
+    public Node insertNode(Node node, int val) {
         if (node == null) {
-            node = new TreeNode(value);
+            node = new Node(val);
             return node;
         }
-        if (value <= node.value) {
-            node.left = insertRecursive(node.left, value);
-        } else if (value > node.value) {
-            node.right = insertRecursive(node.right, value);
+        if (val <= node.value) {
+            node.leftChild = insertNode(node.leftChild, val);
+        } else if (val > node.value) {
+            node.rightChild = insertNode(node.rightChild, val);
         }
-        return node; 
+        return node;
     }
 
-    // Method to perform inorder traversal
+    // Method to perform an inorder traversal of the binary search tree
     public void inorderTraversal() {
-        inorderRecursive(root);
+        inorderTraverse(rootNode);
         System.out.println();
     }
 
-    public void inorderRecursive(TreeNode node) {
+    // Recursive helper method for inorder traversal
+    public void inorderTraverse(Node node) {
         if (node != null) {
-            inorderRecursive(node.left);
+            inorderTraverse(node.leftChild);
             System.out.print(node.value + " ");
-            inorderRecursive(node.right);
+            inorderTraverse(node.rightChild);
         }
     }
 
-    // Method to find and print the parent of a given value
-    public void printParent(int value) {
-        TreeNode parent = findParent(root, value, null);
+    // Method to find and print the parent of a given value in the binary search tree
+    public void printParent(int val) {
+        Node parent = findParent(rootNode, val, null);
         if (parent == null) {
-            System.out.println(value + " is the root node or does not exist in the tree.");
+            System.out.println(val + " is the root node or does not exist in the tree.");
         } else {
-            System.out.println("The parent of " + value + " is " + parent.value);
+            System.out.println("The parent of " + val + " is " + parent.value);
         }
     }
 
-    TreeNode findParent(TreeNode node, int value, TreeNode parent) {
+    // Recursive method to find the parent of a given value in the binary search tree
+    Node findParent(Node node, int val, Node parentNode) {
         if (node == null) return null;
-        if (node.value == value) return parent;
-        parent = findParent(node.left, value, node);
-        if (parent != null) return parent;
-        return findParent(node.right, value, node);
+        if (node.value == val) return parentNode;
+        parentNode = findParent(node.leftChild, val, node);
+        if (parentNode != null) return parentNode;
+        return findParent(node.rightChild, val, node);
     }
 
-    // Method to delete a value 
-    TreeNode deleteRecursive(TreeNode root, int key) {
+    // Method to delete a value from the binary search tree
+    Node deleteValue(Node root, int key) {
         if (root == null) return root;
 
         if (key < root.value) {
-            root.left = deleteRecursive(root.left, key);
+            root.leftChild = deleteValue(root.leftChild, key);
         } else if (key > root.value) {
-            root.right = deleteRecursive(root.right, key);
+            root.rightChild = deleteValue(root.rightChild, key);
         } else {
-            if (root.left == null) {
-                return root.right;
-            } else if (root.right == null) {
-                return root.left;
+            if (root.leftChild == null) {
+                return root.rightChild;
+            } else if (root.rightChild == null) {
+                return root.leftChild;
             }
 
-            root.value = minValue(root.right);
+            root.value = findMinValue(root.rightChild);
 
-            root.right = deleteRecursive(root.right, root.value);
+            root.rightChild = deleteValue(root.rightChild, root.value);
         }
 
         return root;
     }
 
-    private int minValue(TreeNode root) {
-        int minv = root.value;
-        while (root.left != null) {
-            minv = root.left.value;
-            root = root.left;
+    // Helper method to find the minimum value in a subtree
+    private int findMinValue(Node root) {
+        int minVal = root.value;
+        while (root.leftChild != null) {
+            minVal = root.leftChild.value;
+            root = root.leftChild;
         }
-        return minv;
-    }}
+        return minVal;
+    }
+}
