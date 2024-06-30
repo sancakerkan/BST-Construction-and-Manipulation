@@ -1,5 +1,5 @@
 # BST-Construction-and-Manipulation
-This project is a Binary Search Tree (BST) implementation in C/Java. The BST supports various operations such as construction, insertion, listing (inorder traversal), finding parent nodes, and deletion.
+This project is a Binary Search Tree (BST) implementation in Java. The BST supports various operations such as construction, insertion, listing (inorder traversal), finding parent nodes, and deletion.
 ## Features
 - **CONSTRUCT [values]**: Constructs a BST from a given list of integers.
 - **INSERT value**: Inserts a new integer into the BST in the correct position.
