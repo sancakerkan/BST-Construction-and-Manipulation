@@ -60,4 +60,4 @@ LIST
 ## Contribution
 Contributions are welcome! Feel free to fork the repository and submit pull requests.
 ## License
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/sancakerkan/BST-Construction-and-Manipulation/blob/main/LICENSE) file for more details.
